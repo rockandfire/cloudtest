@@ -3,8 +3,14 @@ pipeline {
 
 	stages {
 		stage('Build') {
+			agent {
+				docker {
+					image 'ubuntu:latest'
+					reuseNode true
+				}
+			}
 			steps {
-				sh 'make'
+				sh 'sudo apt install build-essential'
 			}
 		}
 	}
