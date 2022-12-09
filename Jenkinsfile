@@ -1,16 +1,11 @@
 pipeline {
-	agent any
-
+	agent {
+		docker {image 'ubuntu:latest'}
+	}
 	stages {
 		stage('Build') {
-			agent {
-				docker {
-					image 'ubuntu:latest'
-					reuseNode true
-				}
-			}
 			steps {
-				sh 'sudo apt install build-essential'
+				sh 'node --version'
 			}
 		}
 	}
