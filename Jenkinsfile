@@ -1,10 +1,11 @@
 pipeline {
-	agent any
-
+	agent {
+		docker {image 'ubuntu:latest'}
+	}
 	stages {
 		stage('Build') {
 			steps {
-				sh 'make'
+				sh 'node --version'
 			}
 		}
 	}
