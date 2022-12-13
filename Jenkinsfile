@@ -1,15 +1,16 @@
 pipeline {
-	agent any
+	agent {
+		kubernetes {
+			yamlFile 'y.yaml'
+		}
+	}
+	
 	stages {
 		stage('Build') {
-			agent {
-				docker {
-					image 'ubuntu:latest'
-					reuseNode true
-				}
-			}
 			steps {
-				sh 'ubuntu --version'
+				container('ubuntu') {
+					sh 'ubuntu --version'
+				}
 			}
 		}
 	}
